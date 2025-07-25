@@ -7,7 +7,7 @@ import jejakGayaImg from '../assets/images/jejak.png';
 import dapaStoreImg from '../assets/images/dapa.png';
 import alquranImg from '../assets/images/alquran.png';
 import zestooImg from '../assets/images/zestoo.png';
-// import sinemaImg from '../assets/images/sinema.png';
+
 
 const projects = [
     {
@@ -38,15 +38,7 @@ const projects = [
     title: 'Zestoo - Aplikasi Penjualan',
     description: 'Membangun aplikasi penjualan jajanan online menggunakan Java Spring Boot dan Thymeleaf dengan database MySQL.',
     image: zestooImg,
-    tags: ['Java', 'Spring Boot', 'Thymeleaf', 'MySQL'],
-    liveUrl: '#',
-    githubUrl: 'https://github.com/ajangirhas313',
-  },
-  {
-    title: 'Aplikasi Konsol Sinema',
-    description: 'Mengembangkan aplikasi sistem bioskop berbasis konsol menggunakan bahasa C, fokus pada logika dan struktur data.',
-    image: zestooImg,
-    tags: ['C', 'Algoritma', 'Struktur Data'],
+    tags: ['Java', 'Spring Boot', 'Thymeleaf'],
     liveUrl: '#',
     githubUrl: 'https://github.com/ajangirhas313',
   },
@@ -62,11 +54,9 @@ const ProjectsContainer = styled.section`
 
 const ProjectsGrid = styled(motion.div)`
   display: grid;
-  gap: 2rem; /* Sedikit lebih banyak ruang antar kartu */
+  gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 `;
-
-// --- DESAIN KARTU BARU DIMULAI DI SINI ---
 
 const CardLinks = styled.div`
   position: absolute;
@@ -99,7 +89,6 @@ const CardImageContainer = styled.div`
   overflow: hidden;
   position: relative;
   
-  /* Gradien halus di atas gambar untuk menempatkan ikon */
   &::after {
     content: '';
     position: absolute;
@@ -115,7 +104,7 @@ const CardImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease-out;
+  /* Transisi zoom dihapus dari sini agar lebih halus */
 `;
 
 const CardContent = styled.div`
@@ -154,19 +143,19 @@ const Tag = styled.span`
 `;
 
 
+// --- PERUBAHAN UTAMA ADA DI SINI ---
 const ProjectCard = styled(motion.div)`
   background: var(--surface-color);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Transisi yang lebih spesifik dan halus */
+  transition: box-shadow 0.4s ease;
 
   &:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    ${CardImage} {
-      transform: scale(1.05);
-    }
+    /* Efek zoom pada gambar dihapus dari sini */
     ${CardTitle} {
       color: var(--primary-color);
     }
@@ -186,7 +175,7 @@ const cardVariants = {
 const ProjectsSection = () => {
   return (
     <ProjectsContainer>
-      <h2>Proyek Pilihan</h2>
+      <h2>Projects</h2>
       <ProjectsGrid
         variants={containerVariants}
         initial="hidden"
@@ -197,7 +186,8 @@ const ProjectsSection = () => {
           <ProjectCard 
             key={project.title}
             variants={cardVariants}
-            whileHover={{ y: -5 }}
+            whileHover={{ y: -5 }} // Efek angkat tetap ada karena halus
+            transition={{ type: 'spring', stiffness: 400, damping: 15 }} // spring dibuat lebih 'kaku'
           >
             <CardImageContainer>
               <CardLinks>

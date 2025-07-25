@@ -12,9 +12,8 @@ import javaFundamentalImg from '../assets/images/certificates/java_fundamental.j
 import mySqlImg from '../assets/images/certificates/mysql_database.jpg';
 
 
-// Menambahkan informasi penyelenggara
 const certificates = [
-  {
+    {
     title: 'Basic React Training',
     image: basicReactImg,
     description: 'Pelatihan intensif untuk membangun antarmuka pengguna yang dinamis menggunakan fundamental React.',
@@ -85,24 +84,24 @@ const CertificatesGrid = styled(motion.div)`
 const CertificateCard = styled(motion.a)`
   border-radius: 12px;
   text-decoration: none;
-  /* 1. Latar Belakang Gradien Halus */
   background: linear-gradient(145deg, var(--surface-color), var(--background-color));
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-out; /* Menggunakan 'ease-out' untuk feel yang lebih smooth */
   padding: 1rem;
   display: flex;
   flex-direction: column;
 
   &:hover {
-    /* 2. Efek "Glow" Saat Hover */
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px -5px rgba(74, 144, 226, 0.2);
+    /* Efek angkat dikurangi agar lebih subtil */
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px -5px rgba(74, 144, 226, 0.2);
     border-color: var(--primary-color);
   }
 `;
 
-const ImageContainer = styled(motion.div)`
+// ImageContainer tidak lagi memerlukan motion.div
+const ImageContainer = styled.div`
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -136,7 +135,7 @@ const CertificateDescription = styled.p`
   font-size: 0.9rem;
   color: var(--text-secondary-color);
   line-height: 1.5;
-  flex-grow: 1; /* Mendorong provider ke bawah */
+  flex-grow: 1;
   margin-bottom: 1rem;
 `;
 
@@ -147,8 +146,6 @@ const CertificateProvider = styled.span`
   opacity: 0.7;
 `;
 
-
-// Varian animasi
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.1 } },
@@ -175,13 +172,10 @@ const CertificatesSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             variants={cardVariants}
-            whileHover="hover" // Trigger state 'hover' pada Framer Motion
+            // Properti whileHover dihapus dari sini, semua dikontrol oleh CSS
           >
-            {/* 3. Efek Angkat Berlapis (Parallax) */}
-            <ImageContainer
-              variants={{ hover: { y: -15 } }} // Saat card di-hover, gambar akan naik 15px
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
+            {/* ImageContainer tidak lagi memiliki properti animasi terpisah */}
+            <ImageContainer>
               <CertificateImage src={cert.image} alt={cert.title} />
             </ImageContainer>
 

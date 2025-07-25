@@ -2,11 +2,16 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --primary-color: #4A90E2; // Biru yang cerah sebagai aksen
-    --background-color: #121212; // Latar belakang gelap
-    --surface-color: #1E1E1E;   // Warna untuk card/permukaan
-    --text-color: #EAEAEA;
-    --text-secondary-color: #B3B3B3;
+    /* Variabel ini sekarang akan diisi oleh ThemeProvider */
+    --primary-color: ${({ theme }) => theme.primary};
+    --background-color: ${({ theme }) => theme.background};
+    --surface-color: ${({ theme }) => theme.surface};
+    --text-color: ${({ theme }) => theme.text};
+    --text-secondary-color: ${({ theme }) => theme.textSecondary};
+    --glow-effect: ${({ theme }) => theme.glow};
+    --card-shadow: ${({ theme }) => theme.cardShadow};
+    --card-hover-shadow: ${({ theme }) => theme.cardHoverShadow};
+    --tag-background: ${({ theme }) => theme.tagBackground};
   }
 
   *, *::before, *::after {
@@ -26,6 +31,7 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4 {
@@ -36,7 +42,7 @@ const GlobalStyles = createGlobalStyle`
   
   section {
     padding: 100px 8%;
-    overflow: hidden; // Mencegah scrollbar horizontal dari animasi slide
+    overflow: hidden; 
   }
 `;
 
