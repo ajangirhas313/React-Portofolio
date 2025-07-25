@@ -125,7 +125,7 @@ const Navbar = ({ toggleTheme, themeMode }) => {
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <NavLogo href="#home" onClick={handleLinkClick}>Ajang Irhas R.</NavLogo>
+      <NavLogo href="#home" onClick={handleLinkClick}>Portofolio</NavLogo>
 
       <MenuToggle onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <FaTimes /> : <FaBars />}

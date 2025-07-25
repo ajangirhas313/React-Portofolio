@@ -158,7 +158,7 @@ const cardVariants = {
 const CertificatesSection = () => {
   return (
     <CertificatesContainer>
-      <h2>Sertifikat & Pencapaian</h2>
+      <h2>Certificates</h2>
       <CertificatesGrid
         variants={containerVariants}
         initial="hidden"

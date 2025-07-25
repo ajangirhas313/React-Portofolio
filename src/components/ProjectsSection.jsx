@@ -16,7 +16,7 @@ const projects = [
     image: jejakGayaImg,
     tags: ['React', 'Node.js', 'PostgreSQL'],
     liveUrl: '#',
-    githubUrl: 'https://github.com/ajangirhas313',
+    githubUrl: 'https://github.com/ajangirhas313/jejak_gaya',
   },
   {
     title: 'Dapa Electronic Store - REST API',
@@ -24,7 +24,7 @@ const projects = [
     image: dapaStoreImg,
     tags: ['Java', 'Spring Boot', 'MySQL'],
     liveUrl: '#',
-    githubUrl: 'https://github.com/ajangirhas313',
+    githubUrl: 'https://github.com/ajangirhas313/dapa_store',
   },
   {
     title: 'AlQuranku - Website Interaktif',
@@ -32,7 +32,7 @@ const projects = [
     image: alquranImg,
     tags: ['HTML', 'CSS', 'JavaScript'],
     liveUrl: '#',
-    githubUrl: 'https://github.com/ajangirhas313',
+    githubUrl: 'https://github.com/ajangirhas313/HTML_Project',
   },
   {
     title: 'Zestoo - Aplikasi Penjualan',
@@ -40,7 +40,7 @@ const projects = [
     image: zestooImg,
     tags: ['Java', 'Spring Boot', 'Thymeleaf'],
     liveUrl: '#',
-    githubUrl: 'https://github.com/ajangirhas313',
+    githubUrl: 'https://github.com/ajangirhas313/projekan',
   },
 ];
 
@@ -192,7 +192,6 @@ const ProjectsSection = () => {
             <CardImageContainer>
               <CardLinks>
                 <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"><FaGithub /></a>
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"><FaExternalLinkAlt /></a>
               </CardLinks>
               <CardImage src={project.image} alt={project.title} />
             </CardImageContainer>
