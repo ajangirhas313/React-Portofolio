@@ -1,13 +1,14 @@
-import React from 'react';
 import styled from 'styled-components';
 
-// 1. Impor foto Anda dari folder assets
-import fotoProfil from '../assets/images/fotoku.jpg'; // Pastikan nama file dan ekstensinya sesuai
+import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaJava, FaGitAlt } from 'react-icons/fa';
+import { SiSpringboot, SiPostgresql, SiMysql } from 'react-icons/si';
+
+import fotoProfil from '../assets/images/fotoku.jpg';
 
 const AboutContainer = styled.section`
   display: grid;
   grid-template-columns: 3fr 2fr;
-  gap: 4rem; /* Memberi lebih banyak ruang */
+  gap: 4rem;
   align-items: center;
 
   @media (max-width: 992px) {
@@ -49,34 +50,37 @@ const TextContent = styled.div`
   }
 `;
 
-const SkillsList = styled.ul`
+// 2. Ganti SkillsList dengan SkillsGrid
+const SkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 200px));
-  gap: 10px;
-  list-style: none;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 1.5rem;
   margin-top: 2rem;
-  padding: 0;
+  max-width: 500px;
   @media (max-width: 992px) {
-    justify-content: center;
+    margin: 2rem auto 0 auto;
   }
 `;
 
-const Skill = styled.li`
+const Skill = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
   color: var(--text-secondary-color);
-  font-family: 'Poppins', sans-serif;
   font-size: 0.9rem;
-  position: relative;
-  padding-left: 20px;
+  transition: color 0.3s ease, transform 0.3s ease;
 
-  &::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
+  svg {
+    font-size: 3rem; /* Ukuran ikon diperbesar */
+  }
+  
+  &:hover {
     color: var(--primary-color);
+    transform: translateY(-5px);
   }
 `;
 
-// Container untuk membungkus dan memberi style pada foto
 const ImageWrapper = styled.div`
   max-width: 300px;
   width: 100%;
@@ -130,17 +134,21 @@ const AboutSection = () => {
         <p>
           Berikut adalah beberapa teknologi utama yang saya kuasai:
         </p>
-        <SkillsList>
-          <Skill>JavaScript (ES6+)</Skill>
-          <Skill>React.JS</Skill>
-          <Skill>Node.js</Skill>
-          <Skill>Java & Spring Boot</Skill>
-          <Skill>SQL (MySQL & Postgres)</Skill>
-          <Skill>HTML & CSS</Skill>
-        </SkillsList>
+        {/* 3. Gunakan grid baru untuk menampilkan logo skill */}
+        <SkillsGrid>
+          <Skill><FaReact /><p>React</p></Skill>
+          <Skill><FaNodeJs /><p>Node.js</p></Skill>
+          <Skill><FaJava /><p>Java</p></Skill>
+          <Skill><SiSpringboot /><p>Spring</p></Skill>
+          <Skill><FaJsSquare /><p>JavaScript</p></Skill>
+          <Skill><SiMysql /><p>MySQL</p></Skill>
+          <Skill><SiPostgresql /><p>PostgreSQL</p></Skill>
+          <Skill><FaHtml5 /><p>HTML5</p></Skill>
+          <Skill><FaCss3Alt /><p>CSS3</p></Skill>
+          <Skill><FaGitAlt /><p>Git</p></Skill>
+        </SkillsGrid>
       </TextContent>
       
-      {/* Ganti Scene3D dengan wrapper dan gambar ini */}
       <ImageWrapper>
         <ProfileImage src={fotoProfil} alt="Foto Profil Ajang Irhas Rifai" />
       </ImageWrapper>
