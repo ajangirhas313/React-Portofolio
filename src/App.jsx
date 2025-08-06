@@ -9,12 +9,12 @@ import CertificatesSection from './components/CertificatesSection';
 import ContactSection from './components/ContactSection';
 import AnimatedSection from './components/AnimatedSection';
 import GlobalStyles from './GlobalStyles';
-
+import Footer from './components/Footer';
 
 const useThemeMode = () => {
   const [themeMode, setThemeMode] = useState(() => {
     const savedTheme = localStorage.getItem('themeMode');
-    return savedTheme || 'dark'; // Default ke dark mode
+    return savedTheme || 'dark';
   });
 
   useEffect(() => {
@@ -45,6 +45,7 @@ function App() {
         <div id="certificates"><CertificatesSection /></div>
         <div id="contact"><AnimatedSection><ContactSection /></AnimatedSection></div>
       </main>
+      <Footer /> {/* 2. Tambahkan komponen Footer di sini */}
     </ThemeProvider>
   );
 }
