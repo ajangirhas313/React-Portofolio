@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    /* Variabel ini sekarang akan diisi oleh ThemeProvider */
+    /* ... (variabel warna Anda tidak berubah) ... */
     --primary-color: ${({ theme }) => theme.primary};
     --background-color: ${({ theme }) => theme.background};
     --surface-color: ${({ theme }) => theme.surface};
@@ -42,7 +42,12 @@ const GlobalStyles = createGlobalStyle`
   
   section {
     padding: 100px 8%;
-    overflow: hidden; 
+    overflow: hidden;
+
+    /* --- TAMBAHAN UNTUK RESPONSIVE --- */
+    @media (max-width: 768px) {
+      padding: 80px 5%; /* Padding atas/bawah & kiri/kanan dikurangi di mobile */
+    }
   }
 `;
 

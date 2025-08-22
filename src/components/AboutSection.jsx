@@ -1,24 +1,31 @@
+import React from 'react';
 import styled from 'styled-components';
-
 import { FaHtml5, FaCss3Alt, FaJsSquare, FaReact, FaNodeJs, FaJava, FaGitAlt } from 'react-icons/fa';
 import { SiSpringboot, SiPostgresql, SiMysql } from 'react-icons/si';
-
 import fotoProfil from '../assets/images/fotoku.jpg';
 
+// --- PERUBAHAN UTAMA: Menggunakan Flexbox ---
 const AboutContainer = styled.section`
-  display: grid;
-  grid-template-columns: 3fr 2fr;
-  gap: 4rem;
+  display: flex; /* Menggunakan flexbox */
   align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
 
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-    text-align: center;
+  @media (max-width: 960px) {
+    flex-direction: column; /* Kunci: Mengubah arah menjadi vertikal di mobile */
     gap: 3rem;
   }
 `;
 
 const TextContent = styled.div`
+  flex: 3; /* Mengambil 3 bagian dari ruang yang tersedia */
+  
+  @media (max-width: 960px) {
+    order: 2;
+    width: 100%; /* Memastikan lebar penuh di mobile */
+    text-align: center;
+  }
+
   h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
@@ -33,7 +40,7 @@ const TextContent = styled.div`
       width: 50px;
       height: 4px;
       background: var(--primary-color);
-      @media (max-width: 992px) {
+      @media (max-width: 960px) {
         left: 50%;
         transform: translateX(-50%);
       }
@@ -44,21 +51,22 @@ const TextContent = styled.div`
     color: var(--text-secondary-color);
     margin-bottom: 1rem;
     max-width: 600px;
-     @media (max-width: 992px) {
-        margin: 0 auto 1rem auto;
+     @media (max-width: 960px) {
+        margin-left: auto;
+        margin-right: auto;
      }
   }
 `;
 
-// 2. Ganti SkillsList dengan SkillsGrid
 const SkillsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
   gap: 1.5rem;
   margin-top: 2rem;
   max-width: 500px;
-  @media (max-width: 992px) {
-    margin: 2rem auto 0 auto;
+  @media (max-width: 960px) {
+    margin-left: auto;
+    margin-right: auto;
   }
 `;
 
@@ -72,7 +80,7 @@ const Skill = styled.div`
   transition: color 0.3s ease, transform 0.3s ease;
 
   svg {
-    font-size: 3rem; /* Ukuran ikon diperbesar */
+    font-size: 3rem;
   }
   
   &:hover {
@@ -82,12 +90,17 @@ const Skill = styled.div`
 `;
 
 const ImageWrapper = styled.div`
+  flex: 2; /* Mengambil 2 bagian dari ruang yang tersedia */
   max-width: 300px;
   width: 100%;
   margin: 0 auto;
   position: relative;
   border-radius: 12px;
   background: var(--primary-color);
+  
+  @media (max-width: 960px) {
+    order: 1;
+  }
   
   &::before {
     content: '';
@@ -134,7 +147,6 @@ const AboutSection = () => {
         <p>
           Berikut adalah beberapa teknologi utama yang saya kuasai:
         </p>
-        {/* 3. Gunakan grid baru untuk menampilkan logo skill */}
         <SkillsGrid>
           <Skill><FaReact /><p>React</p></Skill>
           <Skill><FaNodeJs /><p>Node.js</p></Skill>

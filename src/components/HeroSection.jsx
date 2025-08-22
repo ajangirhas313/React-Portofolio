@@ -26,29 +26,23 @@ const ContentWrapper = styled(motion.div)`
 `;
 
 const NameTitle = styled(motion.h1)`
-  font-size: 5rem;
+  font-size: clamp(2.8rem, 10vw, 5rem); /* Ukuran font responsif otomatis */
   font-weight: 700;
   margin: 0;
+  line-height: 1.1; /* Mencegah jarak baris yang terlalu besar */
   color: var(--text-color);
-
-  @media (max-width: 768px) {
-    font-size: 3rem;
-  }
 `;
 
 const Subtitle = styled(motion.h2)`
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ukuran font responsif otomatis */
   font-weight: 400;
   color: var(--text-secondary-color);
+  margin-top: 1rem;
   margin-bottom: 2rem;
 
   span {
     color: var(--primary-color);
     font-weight: 600;
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
   }
 `;
 
