@@ -8,9 +8,8 @@ import dapaStoreImg from '../assets/images/dapa.png';
 import alquranImg from '../assets/images/alquran.png';
 import zestooImg from '../assets/images/zestoo.png';
 
-
 const projects = [
-    {
+  {
     title: 'Jejak Gaya - Fullstack E-commerce',
     description: 'Mengembangkan aplikasi penjualan baju online responsif dengan ReactJS untuk frontend dan Node.js/Express.js sebagai backend.',
     image: jejakGayaImg,
@@ -52,10 +51,12 @@ const ProjectsContainer = styled.section`
   }
 `;
 
+// --- PERUBAHAN UTAMA: Menggunakan Flexbox ---
 const ProjectsGrid = styled(motion.div)`
-  display: grid;
+  display: flex; /* Menggunakan flexbox */
+  flex-wrap: wrap; /* Izinkan item untuk pindah ke baris baru */
+  justify-content: center; /* KUNCI: Membuat semua item rata tengah */
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 `;
 
 const CardLinks = styled.div`
@@ -104,12 +105,14 @@ const CardImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Transisi zoom dihapus dari sini agar lebih halus */
 `;
 
 const CardContent = styled.div`
   padding: 1.5rem;
   text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 const CardTitle = styled.h3`
@@ -125,6 +128,7 @@ const CardDescription = styled.p`
   color: var(--text-secondary-color);
   line-height: 1.6;
   margin-bottom: 1.25rem;
+  flex-grow: 1; /* Mendorong tags ke bawah */
 `;
 
 const CardTags = styled.div`
@@ -134,7 +138,7 @@ const CardTags = styled.div`
 `;
 
 const Tag = styled.span`
-  background-color: rgba(74, 144, 226, 0.1);
+  background-color: var(--tag-background);
   color: var(--primary-color);
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
@@ -142,35 +146,28 @@ const Tag = styled.span`
   font-weight: 500;
 `;
 
-
-// --- PERUBAHAN UTAMA ADA DI SINI ---
 const ProjectCard = styled(motion.div)`
   background: var(--surface-color);
   border-radius: 12px;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  /* Transisi yang lebih spesifik dan halus */
+  box-shadow: var(--card-shadow);
   transition: box-shadow 0.4s ease;
+  width: 350px; /* Memberi lebar tetap untuk konsistensi */
+  display: flex;
+  flex-direction: column;
 
   &:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-    /* Efek zoom pada gambar dihapus dari sini */
+    box-shadow: var(--card-hover-shadow);
     ${CardTitle} {
       color: var(--primary-color);
     }
   }
 `;
 
-// Varian animasi entrance
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-const cardVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
-};
+// Varian animasi
+const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
+const cardVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } } };
 
 const ProjectsSection = () => {
   return (
@@ -186,12 +183,13 @@ const ProjectsSection = () => {
           <ProjectCard 
             key={project.title}
             variants={cardVariants}
-            whileHover={{ y: -5 }} // Efek angkat tetap ada karena halus
-            transition={{ type: 'spring', stiffness: 400, damping: 15 }} // spring dibuat lebih 'kaku'
+            whileHover={{ y: -5 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 15 }}
           >
             <CardImageContainer>
               <CardLinks>
-                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"><FaGithub /></a>
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a>
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label="Live Demo"><FaExternalLinkAlt /></a>
               </CardLinks>
               <CardImage src={project.image} alt={project.title} />
             </CardImageContainer>

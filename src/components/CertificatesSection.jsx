@@ -11,9 +11,8 @@ import logicAlgorithmImg from '../assets/images/certificates/logika_algoritma_c.
 import javaFundamentalImg from '../assets/images/certificates/java_fundamental.jpg';
 import mySqlImg from '../assets/images/certificates/mysql_database.jpg';
 
-
 const certificates = [
-    {
+  {
     title: 'Basic React Training',
     image: basicReactImg,
     description: 'Pelatihan intensif untuk membangun antarmuka pengguna yang dinamis menggunakan fundamental React.',
@@ -74,33 +73,33 @@ const CertificatesContainer = styled.section`
   }
 `;
 
+// --- PERUBAHAN UTAMA: Menggunakan Flexbox ---
 const CertificatesGrid = styled(motion.div)`
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 `;
 
-// --- Perubahan utama pada style kartu ---
 const CertificateCard = styled(motion.a)`
   border-radius: 12px;
   text-decoration: none;
   background: linear-gradient(145deg, var(--surface-color), var(--background-color));
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease-out; /* Menggunakan 'ease-out' untuk feel yang lebih smooth */
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease-out;
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  width: 350px; /* Memberi lebar tetap untuk konsistensi */
 
   &:hover {
-    /* Efek angkat dikurangi agar lebih subtil */
     transform: translateY(-6px);
-    box-shadow: 0 8px 25px -5px rgba(74, 144, 226, 0.2);
+    box-shadow: var(--card-hover-shadow);
     border-color: var(--primary-color);
   }
 `;
 
-// ImageContainer tidak lagi memerlukan motion.div
 const ImageContainer = styled.div`
   border-radius: 8px;
   overflow: hidden;
@@ -146,14 +145,9 @@ const CertificateProvider = styled.span`
   opacity: 0.7;
 `;
 
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-const cardVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
-};
+// Varian animasi
+const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
+const cardVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } } };
 
 const CertificatesSection = () => {
   return (
@@ -172,9 +166,7 @@ const CertificatesSection = () => {
             target="_blank"
             rel="noopener noreferrer"
             variants={cardVariants}
-            // Properti whileHover dihapus dari sini, semua dikontrol oleh CSS
           >
-            {/* ImageContainer tidak lagi memiliki properti animasi terpisah */}
             <ImageContainer>
               <CertificateImage src={cert.image} alt={cert.title} />
             </ImageContainer>
